@@ -1,0 +1,8 @@
+{
+  "name": "mrsinternational",
+  "description": "Pusat kendali eksekutif dan manajemen promosi digital untuk Ragi Hotang: The Contemporary Heritage Reinterpretation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

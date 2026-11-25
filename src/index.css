@@ -1,0 +1,354 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+:root,
+[data-tema='terang'] {
+  color-scheme: light;
+
+  /* Kanvas & Permukaan Silk Ivory / Soft Pearl (hangat, lembut & elegan) */
+  --bg-kanvas: #faf7f8;
+  --bg-permukaan: #ffffff;
+  --bg-sekunder: #f4ecef;
+  --bg-hover: #ede1e5;
+
+  /* Hierarki Teks Atelier Light Mode (Kontras WCAG AA+) */
+  --teks-utama: #24191d;
+  --teks-sekunder: #5c4c52;
+  --teks-redup: #7d6d73;
+
+  /* Garis & Pembatas Halus */
+  --garis-halus: #ede4e7;
+  --garis-tegas: #d9c8cd;
+
+  /* Identitas Utama #7A1C24 (Crimson Rose-Burgundy) */
+  --aksen-maroon: #7a1c24;
+  --aksen-maroon-gelap: #5f141b;
+  --aksen-maroon-lembut: #f8ecef;
+  --aksen-maroon-teks: #7a1c24;
+  --aksen-maroon-garis: #bf737c;
+
+  /* Aksen Pelengkap Emas Champagne Hangat */
+  --aksen-emas: #9c7232;
+  --aksen-emas-terang: #c6984a;
+  --aksen-emas-lembut: #fbf6ec;
+
+  /* Gradasi Khas MRS (#7A1C24 × Gold) */
+  --gradasi-aksen: linear-gradient(135deg, #7a1c24 0%, #982933 56%, #b8873d 100%);
+  --gradasi-emas: linear-gradient(90deg, #7a1c24 0%, #a8333d 48%, #c6984a 100%);
+  --gradasi-garis: linear-gradient(90deg, rgba(122, 28, 36, 0.55) 0%, rgba(198, 152, 74, 0.45) 55%, rgba(237, 228, 231, 0.4) 100%);
+  --gradasi-tab-aktif: linear-gradient(135deg, rgba(122, 28, 36, 0.1) 0%, rgba(198, 152, 74, 0.12) 100%);
+  --gradasi-kartu-lembut: linear-gradient(145deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 236, 239, 0.55) 58%, rgba(251, 246, 236, 0.85) 100%);
+  --gradasi-kanvas: radial-gradient(circle at 88% 4%, rgba(198, 152, 74, 0.11) 0%, transparent 42%),
+    radial-gradient(circle at 12% 18%, rgba(122, 28, 36, 0.06) 0%, transparent 45%);
+
+  /* Status Semantik Terkalibrasi Light Mode */
+  --status-sukses: #1f6f4a;
+  --status-peringatan: #995c14;
+  --status-bahaya: #a62630;
+  --status-bahaya-solid: #9e2228;
+  --status-netral: #73646a;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --bayangan-halus: 0 2px 14px -3px rgb(122 28 36 / 0.07), 0 1px 3px 0 rgb(156 114 50 / 0.05);
+}
+
+[data-tema='gelap'] {
+  color-scheme: dark;
+
+  /* Kanvas utama merah #811F27 dengan gradasi gelap mewah */
+  --bg-kanvas: #811f27;
+  --bg-permukaan: #501016;
+  --bg-sekunder: #64161d;
+  --bg-hover: #731b23;
+
+  /* Hierarki Teks Dark Mode (Kontras Tinggi & Nyaman di atas #811F27 & #501016) */
+  --teks-utama: #fcf5f6;
+  --teks-sekunder: #ebd5d8;
+  --teks-redup: #d5b2b7;
+
+  /* Garis & Pembatas Halus Bernuansa Rose-Ivory */
+  --garis-halus: rgba(255, 224, 228, 0.16);
+  --garis-tegas: rgba(255, 224, 228, 0.3);
+
+  /* Identitas Merah Atelier & Aksen Interaktif Terkalibrasi */
+  --aksen-maroon: #b4323e;
+  --aksen-maroon-gelap: #5d131a;
+  --aksen-maroon-lembut: rgba(255, 214, 218, 0.14);
+  --aksen-maroon-teks: #ffd0d5;
+  --aksen-maroon-garis: #e07a84;
+
+  /* Aksen Pelengkap Emas Champagne Bercahaya */
+  --aksen-emas: #f0cb7e;
+  --aksen-emas-terang: #f7dc9c;
+  --aksen-emas-lembut: rgba(240, 203, 126, 0.16);
+
+  /* Gradasi Khas MRS Dark Mode (#811F27 × Gradasi Gelap × Gold) */
+  --gradasi-aksen: linear-gradient(135deg, #9f2530 0%, #811f27 46%, #c9963f 100%);
+  --gradasi-emas: linear-gradient(90deg, #ffccd1 0%, #f0cb7e 55%, #f7dc9c 100%);
+  --gradasi-garis: linear-gradient(90deg, rgba(240, 203, 126, 0.72) 0%, rgba(255, 196, 202, 0.52) 52%, rgba(255, 224, 228, 0.16) 100%);
+  --gradasi-tab-aktif: linear-gradient(135deg, rgba(255, 232, 234, 0.14) 0%, rgba(240, 203, 126, 0.22) 100%);
+  --gradasi-kartu-lembut: linear-gradient(145deg, rgba(129, 31, 39, 0.92) 0%, rgba(69, 13, 18, 0.96) 58%, rgba(240, 203, 126, 0.16) 100%);
+  --gradasi-kanvas: radial-gradient(circle at 86% 6%, rgba(240, 203, 126, 0.1) 0%, transparent 40%),
+    linear-gradient(155deg, #811f27 0%, #5e141b 48%, #2e080c 100%);
+
+  /* Status Semantik Terkalibrasi Dark Mode di atas Merah #811F27 */
+  --status-sukses: #74ebad;
+  --status-peringatan: #ffd175;
+  --status-bahaya: #ffb3ba;
+  --status-bahaya-solid: #b8252f;
+  --status-netral: #dec8cb;
+
+  --bayangan-halus: 0 6px 20px -4px rgb(22 3 5 / 0.5), 0 1px 4px 0 rgb(40 6 9 / 0.28);
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    height: 100dvh;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--teks-utama);
+    background-color: var(--bg-kanvas);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--bg-kanvas);
+    background-image: var(--gradasi-kanvas);
+    color: var(--teks-utama);
+    line-height: 1.55;
+  }
+
+  button,
+  a,
+  select,
+  [role='tab'] {
+    touch-action: manipulation;
+  }
+
+  h1,
+  h2 {
+    text-wrap: balance;
+  }
+
+  .font-sans,
+  .font-serif,
+  .font-editorial {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  .font-mono,
+  code,
+  pre,
+  kbd,
+  samp {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--aksen-maroon);
+    outline-offset: 2px;
+  }
+
+  [data-tema='gelap'] :focus-visible {
+    outline-color: var(--aksen-emas-terang);
+  }
+}
+
+.angka-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.tata-letak-utama {
+  padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Cegah auto-zoom iOS Safari / WebKit saat mengetuk input/select dengan font < 16px */
+@supports (-webkit-touch-callout: none) {
+  input:not([type='checkbox']):not([type='radio']):not([type='range']),
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* Sembunyikan seluruh scrollbar bawaan agar layout penuh 100% tanpa terpotong lebar gutter */
+*,
+*::before,
+*::after {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+
+*::-webkit-scrollbar-track,
+*::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-corner {
+  display: none !important;
+  background: transparent !important;
+}
+
+/* Indikator scroll vertikal melayang: hanya muncul saat interaksi scroll di tepi paling kanan */
+.indikator-scroll-melayang {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0;
+  transition: opacity 260ms ease-out;
+}
+
+.indikator-scroll-melayang[data-aktif='true'] {
+  opacity: 1;
+  transition: opacity 90ms ease-out;
+}
+
+.indikator-scroll-melayang__thumb {
+  position: fixed;
+  right: 3px;
+  width: 5px;
+  border-radius: 9999px;
+  background-color: rgba(122, 28, 36, 0.56);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.34);
+  will-change: top, height;
+}
+
+[data-tema='gelap'] .indikator-scroll-melayang__thumb {
+  background-color: rgba(240, 203, 126, 0.72);
+  box-shadow: 0 0 0 1px rgba(46, 8, 12, 0.4);
+}
+
+/* Ruang cetak A4 HTML Pratinjau mempertahankan kertas putih dengan tinta gelap */
+.lembar-cetak-laporan {
+  --bg-kanvas: #faf9f6;
+  --bg-permukaan: #ffffff;
+  --bg-sekunder: #f3f1ec;
+  --bg-hover: #eeebe3;
+  --teks-utama: #18181b;
+  --teks-sekunder: #4a4843;
+  --teks-redup: #6d6a63;
+  --garis-halus: #e7e4dd;
+  --garis-tegas: #d4cfc4;
+  --aksen-maroon: #7a1c24;
+  --aksen-maroon-gelap: #5f141b;
+  --aksen-maroon-lembut: #f8eff0;
+  --aksen-maroon-teks: #7a1c24;
+  --aksen-maroon-garis: #7a1c24;
+  --aksen-emas: #9e7730;
+  --status-sukses: #1f6b45;
+  --status-peringatan: #9a5d14;
+  --status-bahaya: #9e2228;
+  --status-netral: #6d6a63;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 14mm;
+}
+
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+    color: #18181b !important;
+    font-size: 10pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .no-cetak {
+    display: none !important;
+  }
+
+  body:has(> .modal-cetak-isolasi) #root {
+    display: none !important;
+  }
+
+  .modal-cetak-isolasi .print-wadah-lembar {
+    max-height: none !important;
+    overflow: visible !important;
+    border: none !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  html,
+  body,
+  #root,
+  .tata-letak-utama,
+  main {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  .lembar-cetak-laporan {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+    background: #ffffff !important;
+  }
+
+  .lembar-cetak-laporan .overflow-x-auto {
+    overflow: visible !important;
+  }
+
+  .lembar-cetak-laporan table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: auto;
+  }
+
+  .lembar-cetak-laporan thead {
+    display: table-header-group;
+  }
+
+  .lembar-cetak-laporan tr,
+  .lembar-cetak-laporan .hindari-potong-cetak {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
